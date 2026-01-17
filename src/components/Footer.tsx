@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { Mail, Phone, MapPin, Calendar, Instagram, Linkedin, MessageCircle } from "lucide-react";
-import logoAlavancaAI from "@/assets/logo-alavanca-ai.png";
+import logoAlavancaAI from "@/assets/logo-alavanca-ai-new.png";
 
 const Footer = forwardRef<HTMLElement>((_, ref) => {
   const currentYear = new Date().getFullYear();

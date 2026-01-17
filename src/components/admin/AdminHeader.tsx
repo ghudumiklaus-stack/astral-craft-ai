@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import logo from "@/assets/logo-alavanca-ai.png";
+import logo from "@/assets/logo-alavanca-ai-new.png";
 
 const AdminHeader = () => {
   const navigate = useNavigate();

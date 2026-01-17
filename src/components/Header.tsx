@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import logoAlavancaAI from "@/assets/logo-alavanca-ai.png";
+import logoAlavancaAI from "@/assets/logo-alavanca-ai-new.png";
 
 const Header = () => {
   return (
