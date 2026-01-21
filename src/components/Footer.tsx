@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
-import { Mail, Phone, MapPin, Calendar, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import logoAlavancaAI from "@/assets/logo-alavanca-ai-new.png";
+import SocialCard from "./SocialCard";
 
 const Footer = forwardRef<HTMLElement>((_, ref) => {
   const currentYear = new Date().getFullYear();
@@ -38,32 +39,9 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
               Soluções sofisticadas e personalizadas para impulsionar seu crescimento.
             </p>
             
-            {/* Social Icons */}
-            <div className="flex items-center gap-3 mt-6">
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors group"
-              >
-                <Instagram className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors group"
-              >
-                <Linkedin className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a 
-                href="https://wa.me/5511997529072" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors group"
-              >
-                <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
+            {/* Social Card Animation */}
+            <div className="mt-6">
+              <SocialCard />
             </div>
           </div>
 
