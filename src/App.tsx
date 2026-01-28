@@ -9,6 +9,10 @@ import Admin from "./pages/Admin";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
+import Dashboards from "./pages/solutions/Dashboards";
+import AIAtendimento from "./pages/solutions/AIAtendimento";
+import GestaoTrafego from "./pages/solutions/GestaoTrafego";
+import AutomacaoProcessos from "./pages/solutions/AutomacaoProcessos";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +28,10 @@ const App = () => (
             <Route path="/admin" element={<Admin />} />
             <Route path="/privacidade" element={<PrivacyPolicy />} />
             <Route path="/termos" element={<TermsOfUse />} />
+            <Route path="/solucoes/dashboards" element={<Dashboards />} />
+            <Route path="/solucoes/ia-atendimento" element={<AIAtendimento />} />
+            <Route path="/solucoes/gestao-trafego" element={<GestaoTrafego />} />
+            <Route path="/solucoes/automacao-processos" element={<AutomacaoProcessos />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,111 +1,123 @@
-import { Bot, Zap, Video, Target, MessageSquare, Code } from "lucide-react";
+import { Bot, Zap, Video, Target, MessageSquare, Code, Cpu, Activity, Lock, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AutomationFlow from "@/components/AutomationFlow";
 
-const services = [
-  {
-    icon: Zap,
-    title: "Hub de Atendimento Omnichannel (Chatwoot + n8n)",
-    description: [
-      "Centralize toda a sua operação em um único lugar.",
-      "Implemento o seu \"Correio Mágico\" utilizando Chatwoot para unificar mensagens do WhatsApp, Instagram, Direct, E-mail e Chat do site em uma única caixa de entrada inteligente.",
-      "Com a integração via n8n, criamos fluxos de automação que organizam, respondem e direcionam seus leads automaticamente.",
-      "Garantimos que nenhuma oportunidade seja perdida e que seu suporte funcione com eficiência máxima 24/7."
-    ],
-    size: "large",
-  },
+const capabilities = [
   {
     icon: MessageSquare,
-    title: "IA para Instagram & Suporte",
-    description: "Assistentes virtuais 24/7 treinados para humanizar o contato no Instagram e converter seguidores em clientes de forma automática.",
-    size: "medium",
-  },
-  {
-    icon: Video,
-    title: "Influencers & Vídeos com IA",
-    description: "Criamos o Influenciador Digital exclusivo da sua marca e produzimos vídeos de alto impacto com IA generativa para dominar as redes sociais.",
-    size: "medium",
-  },
-  {
-    icon: Target,
-    title: "Tráfego Pago Data-Driven",
-    description: "Gestão de anúncios no Meta e Google Ads com análise de dados por IA em tempo real. Escala sem achismos, focada em ROI real.",
-    size: "small",
+    title: "Omnichannel Hub",
+    specs: ["Chatwoot Host", "Whatsapp API", "In-box Zero"],
+    description: "Centralização absoluta de canais. Um único painel para governar WhatsApp, Instagram e Email."
   },
   {
     icon: Bot,
-    title: "CRM & Dashboards Customizados",
-    description: "Painéis de dados personalizados para o seu nicho. Visualize métricas vitais e tome decisões estratégicas baseadas em inteligência de dados.",
-    size: "small",
+    title: "Neural Agents",
+    specs: ["Llama 3 / GPT-4", "Context Aware", "24/7 Active"],
+    description: "Assistentes treinados na sua base de conhecimento. Respondem, agendam e vendem sem supervisão humana."
   },
   {
-    icon: Code,
-    title: "Presença Digital de Elite",
-    description: "Desenvolvimento de sites de alta conversão e configuração estratégica do seu Google Meu Negócio para máxima visibilidade local.",
-    size: "small",
+    icon: Video,
+    title: "AI Media Gen",
+    specs: ["Avatar Custom", "Voice Clone", "Scale 100x"],
+    description: "Produção de conteúdo ilimitada. Influenciadores digitais e vídeos de vendas gerados por inteligência artificial."
   },
+  {
+    icon: Target,
+    title: "Precision Ads",
+    specs: ["Pixel API", "Conversion API", "Roas Optimization"],
+    description: "Gestão de tráfego baseada em dados, não em palpites. Otimização algorítmica de campanhas."
+  }
 ];
 
 const Services = () => {
   return (
-    <section id="services" className="relative py-24 px-6 overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12 mb-16">
-          <div className="lg:w-1/3">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-gradient">Serviços</span>
-            </h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Soluções completas em inteligência artificial para escalar seu negócio com tecnologia de ponta.
-            </p>
-            <Button variant="glass" size="lg">
-              Orçamento
-            </Button>
-          </div>
+    <section id="services" className="relative py-24 px-6 overflow-hidden bg-background">
 
-          {/* Bento Grid */}
-          <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              const isLarge = service.size === "large";
-              const isMedium = service.size === "medium";
-              
-              return (
-                <div
-                  key={index}
-                  className={`glass-card rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02] hover:glow-effect group
-                    ${isLarge ? "md:col-span-2 md:row-span-2" : ""}
-                    ${isMedium ? "md:col-span-1 md:row-span-1" : ""}
-                  `}
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/30 transition-colors">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className={`font-semibold mb-2 ${isLarge ? "text-2xl" : "text-lg"}`}>
-                    {service.title}
-                  </h3>
-                  {Array.isArray(service.description) ? (
-                    <div className={`text-muted-foreground ${isLarge ? "text-base space-y-4" : "text-sm"}`}>
-                      {service.description.map((paragraph, i) => (
-                        <p key={i}>{paragraph}</p>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className={`text-muted-foreground ${isLarge ? "text-base" : "text-sm"}`}>
-                      {service.description}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto mb-16 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-border pb-8">
+          <div>
+            <div className="flex items-center gap-2 text-primary mb-2">
+              <Activity className="w-4 h-4 animate-pulse" />
+              <span className="font-mono text-xs tracking-widest uppercase">System Capabilities</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground">
+              Operational <span className="text-muted-foreground">Modules</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-md text-right md:text-left font-mono text-sm leading-relaxed">
+            // ARQUITETURA DE ESCALA <br />
+            Implementamos infraestrutura autônoma para empresas que não podem parar.
+          </p>
+        </div>
+      </div>
+
+      {/* FEATURE: AUTOMATION VISUALIZATION */}
+      <div className="max-w-7xl mx-auto mb-20">
+        <div className="border border-border bg-card/30 p-1 relative">
+          <div className="absolute top-0 left-0 bg-primary w-2 h-2" />
+          <div className="absolute top-0 right-0 bg-primary w-2 h-2" />
+          <div className="absolute bottom-0 left-0 bg-primary w-2 h-2" />
+          <div className="absolute bottom-0 right-0 bg-primary w-2 h-2" />
+
+          <div className="bg-background/80 backdrop-blur-sm p-8 border border-border/50">
+            <div className="flex justify-between items-center mb-8 border-b border-border/50 pb-4">
+              <h3 className="font-mono text-lg text-primary flex items-center gap-2">
+                <Cpu className="w-5 h-5" />
+                CORE ARCHITECTURE :: FLOW_V1
+              </h3>
+              <span className="text-xs font-mono text-muted-foreground uppercase">Live Simulation</span>
+            </div>
+            <AutomationFlow />
           </div>
         </div>
       </div>
+
+      {/* GRID: TECHNICAL CAPABILITIES */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {capabilities.map((cap, index) => (
+          <div
+            key={index}
+            className="group relative bg-card hover:bg-secondary/20 border border-border transition-all duration-300 hover:border-primary/50"
+          >
+            <div className="p-6 h-full flex flex-col">
+              <div className="mb-6 flex justify-between items-start">
+                <div className="p-3 bg-secondary/30 text-primary border border-secondary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                  <cap.icon className="w-6 h-6" />
+                </div>
+                <span className="font-mono text-xs text-muted-foreground opacity-50">0{index + 1}</span>
+              </div>
+
+              <h3 className="text-xl font-bold uppercase mb-4 tracking-tight group-hover:text-primary transition-colors">{cap.title}</h3>
+
+              <ul className="mb-6 space-y-2">
+                {cap.specs.map((spec, i) => (
+                  <li key={i} className="text-xs font-mono text-muted-foreground flex items-center gap-2">
+                    <span className="w-1 h-1 bg-primary/50" />
+                    {spec}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-sm text-muted-foreground mt-auto leading-relaxed border-t border-border pt-4">
+                {cap.description}
+              </p>
+            </div>
+
+            {/* Hover Corner accents */}
+            <div className="absolute top-0 right-0 w-0 h-0 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 group-hover:w-4 group-hover:h-4 transition-all duration-300" />
+            <div className="absolute bottom-0 left-0 w-0 h-0 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 group-hover:w-4 group-hover:h-4 transition-all duration-300" />
+          </div>
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-20 flex justify-center">
+        <Button variant="outline" size="lg" className="rounded-none border-primary/20 hover:border-primary bg-transparent text-foreground hover:bg-primary/5 font-mono uppercase tracking-widest min-w-[300px] h-14 group">
+          <Lock className="w-4 h-4 mr-2 text-muted-foreground group-hover:text-primary transition-colors" />
+          Acessar Consultoria Privada
+        </Button>
+      </div>
+
     </section>
   );
 };

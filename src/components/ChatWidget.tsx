@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Sparkles, Send, Loader2, Mail } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { chatwootService } from "@/services/chatwootService";
 
 interface Message {
   role: "user" | "assistant";
@@ -95,38 +96,74 @@ const ChatWidget = () => {
     setInputValue("");
     setIsLoading(true);
 
+    // Create controller for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
     try {
       // Call n8n webhook
-      const response = await fetch(
-        "https://n8n.autoia.store/webhook/a40f3e54-6037-431f-afb2-76a6e4097b1c",
-        {
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+
+      if (!webhookUrl) {
+        console.error("Missing VITE_N8N_WEBHOOK_URL");
+        throw new Error("Configuration error");
+      }
+
+      // Execute in parallel: n8n request and Chatwoot sync
+      const [n8nResponse] = await Promise.all([
+        fetch(webhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
+          signal: controller.signal,
           body: JSON.stringify({
             mensagem: message,
             sessionId,
-            userId: userEmail,
+            // We pass email in case n8n logic needs it in the future, 
+            // but keeping the requested structure as primary.
+            email: userEmail
           }),
-        }
-      );
+        }),
+        // Sync with Chatwoot (fire and forget logic inside the service, but we await it here to catch errors if needed)
+        // We wrap in a catch block so Chatwoot failure doesn't block the UI
+        chatwootService.syncMessage(userEmail, message).catch(err => console.error("Chatwoot sync failed:", err))
+      ]);
 
-      const data = await response.json();
+      clearTimeout(timeoutId);
+
+      if (!n8nResponse.ok) {
+        throw new Error(`HTTP error! status: ${n8nResponse.status}`);
+      }
+
+      const data = await n8nResponse.json();
 
       // Add assistant response
+      // Expecting 'response' field as per instructions
       const assistantContent =
-        data.output || data.message || data.response || "Desculpe, não consegui processar sua mensagem.";
+        data.response || data.output || data.message || "Desculpe, não consegui processar sua mensagem.";
+
       const assistantMessage: Message = {
         role: "assistant",
         content: assistantContent,
       };
       setMessages((prev) => [...prev, assistantMessage]);
-    } catch (error) {
+
+      // Sync AI response with Chatwoot (fire and forget)
+      chatwootService.syncMessage(userEmail, assistantContent, "outgoing").catch(err => console.error("Chatwoot sync failed for AI response:", err));
+    } catch (error: any) {
       console.error("Error sending message:", error);
+
+      let fallbackText = "Desculpe, ocorreu um erro ao processar sua mensagem. Tente novamente.";
+
+      // Fallback for timeout or fetch error
+      if (error.name === 'AbortError' || error.message.includes('HTTP error') || error.message === 'Failed to fetch') {
+        fallbackText = "No momento nossos servidores de IA estão sobrecarregados, mas recebi seu contato e chamarei no WhatsApp em breve!";
+      }
+
       const errorMessage: Message = {
         role: "assistant",
-        content: "Desculpe, ocorreu um erro ao processar sua mensagem. Tente novamente.",
+        content: fallbackText,
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -232,11 +269,10 @@ const ChatWidget = () => {
                         </div>
                       )}
                       <div
-                        className={`rounded-2xl p-3 max-w-[85%] ${
-                          message.role === "user"
-                            ? "bg-gradient-to-r from-primary to-accent text-white rounded-tr-sm"
-                            : "glass-card rounded-tl-sm"
-                        }`}
+                        className={`rounded-2xl p-3 max-w-[85%] ${message.role === "user"
+                          ? "bg-gradient-to-r from-primary to-accent text-white rounded-tr-sm"
+                          : "glass-card rounded-tl-sm"
+                          }`}
                       >
                         <p className="text-sm">{message.content}</p>
                       </div>

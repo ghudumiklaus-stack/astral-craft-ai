@@ -7,10 +7,10 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
   const currentYear = new Date().getFullYear();
 
   const solutions = [
-    { label: "Dashboards Personalizados", href: "#services" },
-    { label: "IA de Atendimento e Vendas", href: "#services" },
-    { label: "Gestão de Tráfego com IA", href: "#services" },
-    { label: "Automação de Processos", href: "#services" },
+    { label: "Dashboards Personalizados", href: "/solucoes/dashboards" },
+    { label: "IA de Atendimento e Vendas", href: "/solucoes/ia-atendimento" },
+    { label: "Gestão de Tráfego com IA", href: "/solucoes/gestao-trafego" },
+    { label: "Automação de Processos", href: "/solucoes/automacao-processos" },
   ];
 
   const contact = [
@@ -28,17 +28,17 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <img 
-                src={logoAlavancaAI} 
-                alt="Alavanca AI" 
+              <img
+                src={logoAlavancaAI}
+                alt="Alavanca AI"
                 className="h-12 w-auto"
               />
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-sm">
-              Transformando negócios através da inteligência artificial. 
+              Transformando negócios através da inteligência artificial.
               Soluções sofisticadas e personalizadas para impulsionar seu crescimento.
             </p>
-            
+
             {/* Social Card Animation */}
             <div className="mt-6">
               <SocialCard />
@@ -51,7 +51,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
             <ul className="space-y-3">
               {solutions.map((item) => (
                 <li key={item.label}>
-                  <a 
+                  <a
                     href={item.href}
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                   >
@@ -68,7 +68,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
             <ul className="space-y-3">
               {contact.map((item) => (
                 <li key={item.label}>
-                  <a 
+                  <a
                     href={item.href}
                     className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors text-sm group"
                   >

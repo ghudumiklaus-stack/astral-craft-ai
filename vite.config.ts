@@ -11,6 +11,13 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+    proxy: {
+      "/chatwoot-api": {
+        target: "https://chatwoot.autoia.store",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/chatwoot-api/, ""),
+      },
+    },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
