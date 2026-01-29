@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @layer base {
   :root {
@@ -43,13 +43,25 @@
 
     /* Custom gradients - Precision Tech */
     /* Orange to Deep Red linear gradient */
-    --gradient-primary: linear-gradient(135deg, hsl(24, 95%, 53%) 0%, hsl(0, 80%, 50%) 100%);
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(24, 95%, 53%) 0%,
+      hsl(0, 80%, 50%) 100%
+    );
 
     /* Technical Grid background effect - subtle scanline/grid feel */
-    --gradient-bg: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(220, 20%, 20%) 0%, transparent 50%);
+    --gradient-bg: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      hsl(220, 20%, 20%) 0%,
+      transparent 50%
+    );
 
     /* Sharp glow, less diffuse */
-    --gradient-glow: radial-gradient(ellipse at center, hsl(24, 95%, 53%, 0.15) 0%, transparent 70%);
+    --gradient-glow: radial-gradient(
+      ellipse at center,
+      hsl(24, 95%, 53%, 0.15) 0%,
+      transparent 70%
+    );
 
     /* Glass effect - Sharp, technical */
     --glass-bg: hsl(220, 15%, 12%, 0.7);
@@ -73,7 +85,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 
   html {
@@ -95,7 +107,8 @@
   }
 
   .glow-effect {
-    box-shadow: 0 0 60px hsl(24, 95%, 53%, 0.2),
+    box-shadow:
+      0 0 60px hsl(24, 95%, 53%, 0.2),
       0 0 120px hsl(24, 95%, 53%, 0.1);
   }
 
@@ -185,7 +198,6 @@
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0);
@@ -197,14 +209,17 @@
 }
 
 @keyframes pulse-glow {
-
   0%,
   100% {
-    box-shadow: 0 0 20px hsl(24, 95%, 53%, 0.4), 0 0 40px hsl(24, 95%, 53%, 0.2);
+    box-shadow:
+      0 0 20px hsl(24, 95%, 53%, 0.4),
+      0 0 40px hsl(24, 95%, 53%, 0.2);
   }
 
   50% {
-    box-shadow: 0 0 30px hsl(24, 95%, 53%, 0.6), 0 0 60px hsl(24, 95%, 53%, 0.3);
+    box-shadow:
+      0 0 30px hsl(24, 95%, 53%, 0.6),
+      0 0 60px hsl(24, 95%, 53%, 0.3);
   }
 }
 
@@ -219,7 +234,9 @@
   align-items: center;
   justify-content: center;
   background: hsl(var(--secondary));
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
   height: 50px;
@@ -253,7 +270,9 @@
 }
 
 .social-card:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .social-card:hover span {
@@ -279,7 +298,7 @@
   width: 100%;
   height: 100%;
   color: hsl(var(--foreground));
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 600;
   opacity: 1;

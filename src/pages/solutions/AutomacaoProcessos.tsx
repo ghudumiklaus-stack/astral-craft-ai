@@ -1,7 +1,5 @@
 import { ArrowRight, Workflow, Zap, Clock, RefreshCw, Database, GitBranch, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import Footer from "@/components/Footer";
 
 const AutomacaoProcessos = () => {
     const features = [
@@ -81,11 +79,7 @@ const AutomacaoProcessos = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent" />
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/10 blur-[120px]" />
 
-                <div className="max-w-6xl mx-auto relative z-10">
-                    <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
-                        ← Voltar para Home
-                    </Link>
-
+                <div className="max-w-6xl mx-auto relative z-10 pt-8">
                     <div className="w-px h-16 bg-gradient-to-b from-transparent to-accent mx-auto mb-8" />
 
                     <h1 className="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter">
