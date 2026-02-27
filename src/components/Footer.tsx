@@ -31,7 +31,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
               <img
                 src={logoAlavancaAI}
                 alt="Alavanca AI"
-                className="h-12 w-auto"
+                className="h-32 w-auto"
               />
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-sm">

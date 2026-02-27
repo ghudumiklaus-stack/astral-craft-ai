@@ -5,7 +5,7 @@ import PartnerMarquee from "@/components/PartnerMarquee";
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-start pt-24 overflow-hidden px-6">
       {/* Background gradient effects */}
       <div className="absolute inset-0 gradient-bg" />
       <div className="hero-glow top-1/4" />
