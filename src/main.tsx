@@ -1,11 +1,10 @@
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
 
-// Force env validation
-console.log("ENV check:", {
-  hasUrl: !!import.meta.env.VITE_SUPABASE_URL,
-  hasKey: !!import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-});
+// Dynamically import App to ensure env vars are loaded first
+const init = async () => {
+  const { default: App } = await import("./App.tsx");
+  createRoot(document.getElementById("root")!).render(<App />);
+};
 
-createRoot(document.getElementById("root")!).render(<App />);
+init();
